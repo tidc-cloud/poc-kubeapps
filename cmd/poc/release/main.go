@@ -20,8 +20,13 @@ func main() {
 		TarballURL:                "https://charts.bitnami.com/bitnami/redis-17.1.0.tgz",
 	}
 	chUtils := chart.NewChartClient("my-user-agent")
-	chUtils.Init(&v1alpha1.AppRepository{}, nil, nil)
+	chUtils.Init(&v1alpha1.AppRepository{
+		Spec: v1alpha1.AppRepositorySpec{
+			TLSInsecureSkipVerify: true,
+		},
+	}, nil, nil)
 	chart, err := chUtils.GetChart(target, "https://charts.bitnami.com/bitnami")
+
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +34,8 @@ func main() {
 
 	actionConfig := new(action.Configuration)
 	err = actionConfig.Init(
-		settings.RESTClientGetter(), settings.Namespace(),
+		settings.RESTClientGetter(),
+		settings.Namespace(),
 		"secret",
 		func(format string, v ...interface{}) {
 			log.Infof(format, v...)
