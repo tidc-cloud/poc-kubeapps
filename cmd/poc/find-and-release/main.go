@@ -15,12 +15,12 @@ import (
 // k port-forward  svc/kubeapps-postgresql 5432:5432 &
 func main() {
 	chartToInstall := getChart()
-	releaseChart("redis1", *chartToInstall, chartToInstall.ChartVersions[0])
+	releaseChart("redis2", *chartToInstall, chartToInstall.ChartVersions[0])
 }
 
 func getChart() *models.Chart {
 
-	var dbConfig = dbutils.Config{URL: "localhost:5432", Database: "assets", Username: "postgres", Password: "PS7WGeU17M"}
+	var dbConfig = dbutils.Config{URL: "localhost:5432", Database: "assets", Username: "postgres", Password: "bVHiZ2obeO"}
 
 	manager, err := utils.NewPGManager(dbConfig, "kubeapps")
 	if err != nil {

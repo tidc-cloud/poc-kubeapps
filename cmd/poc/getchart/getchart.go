@@ -10,7 +10,7 @@ const repoName = "foo-repo"
 
 func main() {
 
-	agent := ""
+	agent := "chrome"
 	target := &chart.Details{
 		AppRepositoryResourceName: repoName,
 		ChartName:                 "nginx",
